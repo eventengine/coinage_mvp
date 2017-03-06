@@ -9,13 +9,18 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/client'));
 
-
-
 // connect to mongo db
-var uri = 'mongodb://john_packel:Dostoyevsky@81m@ds119210.mlab.com:19210/coinage_mvp';
-mongoose.Promise = global.Promise
+var uri = 'mongodb://john:john@ds119210.mlab.com:19210/coinage_mvp';
+console.log('uri for mongoose = ', uri);
+// mongoose.Promise = global.Promise; // this was throwing err: '(node:23169) UnhandledPromiseRejectionWarning: Unhandled promise rejection (rejection id: 1): MongoError: failed to connect to server [81m:27017] on first connect'
 mongoose.connect(uri);
 var db = mongoose.connection;
+
+mongoose.connection
+ .once('open', () => console.log('Mongoose connection OPEN!'))
+ .on('error', (error) => {
+ console.warn('Warning, this error from Mongoose:', error);
+ });
 
 app.listen(8000);
 
