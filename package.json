@@ -5,7 +5,14 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "index.js",
+    "start": "index.js"
+  },
+  "dependencies": {
+    "mongoose": "4.8.6",
+    "body-parser": "1.17.1",
+    "express": "4.15.2",
+    "express-session": "1.15.1",
+    "request": "2.80.0"
   },
   "repository": {
     "type": "git",
@@ -16,5 +23,8 @@
     "blockchain"
   ],
   "author": "John Packel",
-  "license": "ISC"
+  "license": "ISC",
+  "engines": {
+    "node": "6.10.0"
+  }
 }
