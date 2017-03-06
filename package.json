@@ -1,0 +1,20 @@
+{
+  "name": "coinage_mvp",
+  "version": "1.0.0",
+  "description": "A single-page app that queries bitcoin/blockchain resources on the web and allows user to save the data in a Mongodb. Created at Hack Reactor for 24-hour MVP project 3.6.17.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "index.js",
+  },
+  "repository": {
+    "type": "git",
+    "url": "[ADD THIS]"
+  },
+  "keywords": [
+    "bitcoin",
+    "blockchain"
+  ],
+  "author": "John Packel",
+  "license": "ISC"
+}
