@@ -10,7 +10,6 @@ var app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/../client'));
-console.log('+++PATH: ', __dirname + '/../client')
 // console.log('index.js...');
 
 // connect to mongo db
@@ -23,8 +22,8 @@ var db = mongoose.connection;
 mongoose.connection
  .once('open', function() {
    console.log('Mongoose connection OPEN!');
- })
 
+ })
  .on('error', (error) => {
  console.error('Warning, this error from Mongoose:', error);
  });
@@ -49,9 +48,22 @@ var SavedDataModelSchema = new mongoose.Schema({
 // Compile model from schema
 var SavedDataModel = mongoose.model('SavedDataModel', SavedDataModelSchema );
 
-var dataToSave = {}; // populate this from $scope.fullRecord (create fullRecord from individual fields returned from search)
 
-// var testInstance = new SavedDataModel({byline: "testing..."});
+
+// var dataToSave = {}; // populate this from $scope.fullRecord (create fullRecord from individual fields returned from search)
+// SavedDataModel.create()
+var testInstance = new SavedDataModel({byline: "testing 5pm *******"});
+
+testInstance.save(function(err) {
+  if(err) {console.error('testInstance.save error is: ', err)};
+  console.log('no error in testInstance');
+})
+
+SavedDataModel.find({}).then
+(function(anything) {
+  console.log('no error in SavedDataModel. db contents = ', anything)})
+  // add .catch for error
+
 // var saveInstance = new SavedDataModel(dataToSave);
 
 // var testInstance2 = new SavedDataModel({
@@ -82,30 +94,23 @@ var dataToSave = {}; // populate this from $scope.fullRecord (create fullRecord 
 //   updatedAt: null
 //   });
 
-// testInstance.save(function(err) {
-//   if(err) {console.error('testInstance.save error is: ', err)};
-//   console.log('no error in testInstance');
-// })
+
 
 // on every save, add the date
-SavedDataModelSchema.pre('save', function(next) {
-  // get the current date
-  var currentDate = new Date();
-  // change the updated_at field to current date
-  this.updatedAt = currentDate;
-  // if created_at doesn't exist, add to that field
-  if (!this.updatedAt)
-    this.updatedAt = currentDate;
-  console.log('updatedAt saved: ', this.updatedAt);
-  next();
-});
+// SavedDataModelSchema.pre('save', function(next) {
+//   // get the current date
+//   var currentDate = new Date();
+//   // change the updated_at field to current date
+//   this.updatedAt = currentDate;
+//   // if created_at doesn't exist, add to that field
+//   if (!this.updatedAt)
+//     this.updatedAt = currentDate;
+//   console.log('updatedAt saved: ', this.updatedAt);
+//   next();
+// });
 
 // var Byline = mongoose.model('Byline', SavedDataModelSchema);
 
-SavedDataModel.find({}).then
-(function(bylines) {
-  console.log('no error in SavedDataModel. bylines = ', bylines)})
-  // add .catch for error
 
   // provide static-file serving and a RESTful API which can be used by the client-side code. complete a server that accepts HTTP requests
   // Create a router

@@ -16,9 +16,9 @@ var UserSchema = new mongoose.Schema({
   } // etc....
 });
 
-UserSchema.methods.comparePasswords = function (candidatePassword) {
-  var savedPassword = this.password;
-  return Q.Promise(function (resolve, reject) { //......
+// UserSchema.methods.comparePasswords = function (candidatePassword) {
+//   var savedPassword = this.password;
+//   return Q.Promise(function (resolve, reject) { //......
 
 module.exports = mongoose.model('users', UserSchema); // also had module.exports = app in another file; diff files won't overwrite?
 
