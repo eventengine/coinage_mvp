@@ -3,7 +3,7 @@ var serverController = require('./serverController.js');
 module.exports = function (app, express) { // OK because separate file - won't overwrite?
   console.log('*************  in server/routes.js');
 
-  app.get('/otherstuff', serverController.renderDatabase);
+  // app.get('/otherstuff', serverController.renderDatabase);
   // app.post('/searchRequest', serverController.searchRequest);
 
   app.post('/saveData', serverController.saveData);

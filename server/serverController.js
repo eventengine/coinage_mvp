@@ -1,11 +1,19 @@
 exports.saveData = function(req, res){
   console.log('serverController. received saveData request. req.body = ', req.body);
-  res.send(req.body.chili)
+
+    // re-render db content because we are adding to it
+
+ var dbtemp = {
+    dbtitle: "SendGrid Account Breach Was Used to Attack Coinbase, a Bitcoin Exchange",
+    dburl: "http://bits.blogs.nytimes.com/2015/04/09/sendgrid-email-breach-was-used-to-attack-coinbase-a-bitcoin-exchange/",
+    dbpub_date: "2015-04-09T20:09:02Z"
+  };
+  res.send(dbtemp);
+  // res.send(req.body.chili)
 }
 
 exports.searchRequest = function(req, res){
   console.log('serverController. received searchRequest. req.body = ', req.body);
-
 
   res.send({
     title: "SendGrid Account Breach Was Used to Attack Coinbase, a Bitcoin Exchange",
@@ -22,7 +30,7 @@ exports.searchRequest = function(req, res){
   })
 };
 
-exports.renderDatabase = function(req, res){
-  console.log('serverController. received renderDatabase request. req.body = ', req.body);
-  res.send(req.body.chili)
-}
+// exports.renderDatabase = function(req, res){
+//   console.log('serverController. received renderDatabase request. req.body = ', req.body);
+//   res.send(req.body.chili)
+// }

@@ -18,6 +18,11 @@ Coinage.controller('mainController', function($scope, $http) {
     $scope.createdAt = "2017-03-06T23:41";
     $scope.updatedAt = null;
 
+// database section: server should send these; no default
+    // $scope.dbtitle = "SendGrid Account Breach Was Used to Attack Coinbase, a Bitcoin Exchange";
+    // $scope.url = "http://bits.blogs.nytimes.com/2015/04/09/sendgrid-email-breach-was-used-to-attack-coinbase-a-bitcoin-exchange/";
+    // $scope.dbpub_date = "2015-04-09T20:09:02Z";
+
   $scope.searchRequest = function(input) {
     console.log('mainController.js l 21 post request: mainController / search box input (request) = ', input);
 
@@ -67,6 +72,11 @@ Coinage.controller('mainController', function($scope, $http) {
       user_notes: "This is a note the dev put in manually in mLab when setting up the initial record. Now that he's reading it, he's made good progress."
     }).then(function(resp) {
     console.log('mainController.js l 29, .saveData, resp = ', resp.data);
+
+    $scope.dbtitle = resp.data.dbtitle;
+    $scope.url =resp.data.url;
+    $scope.dbpub_date = resp.data.dbpub_date;
+
     })
   }
 });

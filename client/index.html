@@ -40,11 +40,23 @@
       <a style="color: green">Save these search results ->
       <!-- <br><br> -->
       <!-- <form ng-submit="saveData(fullRecord)"> -->
-  
+
         <input ng-click="saveData(fullRecord)" type="Submit" style="color: brown; margin-left: 2px">
       <!-- </form> -->
-       <hr style="width: 30%">
-database content here...
+       <hr style="width: 30%"> <br>
+         Saved in Mongodb:
+       <!-- <br><br> -->
+       <h4>
+           <a style="font-weight: bold" target="_blank" href="{{url}}">{{ dbtitle }}</a>
+
+           <a style="color: tomato;font-weight: bold"> | Date: </a> {{ dbpub_date }}<br><br>
+
+           <!-- <a style="color: tomato;font-weight: bold whitespace: pre-wrap;">Resource type: </a> {{ type }}
+           <a style="color: tomato;font-weight: bold"> | Source: </a> {{ source }} -->
+
+           <br><br>
+       </h4>
+
   <ng-view></ng-view>
 
       <!-- <p class="h_iframe">
