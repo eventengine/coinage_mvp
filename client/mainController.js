@@ -28,7 +28,8 @@ Coinage.controller('mainController', function($scope, $http) {
   $scope.saveData = function (fullRecord) { // fullRecord will be search result obj
     console.log('mainController.js l 28; .saveData. fullRecord = ', fullRecord);
 
-    $http.post('/saveData', { ?? $scope.fullRecord ?? }).then(function(resp) {
-    console.log('mainController.js l 29, .saveData, resp = ', resp);
+    $http.post('/saveData', { chili: 'cheese'}).then(function(resp) {
+    console.log('mainController.js l 29, .saveData, resp = ', resp.data);
+    })
   }
 });

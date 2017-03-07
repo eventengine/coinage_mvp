@@ -4,12 +4,13 @@ var mongoose = require('mongoose'), Admin = mongoose.mongo.Admin;;
 var partials = require('express-partial');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var routes = require('./routes.js');
 var app = express();
 // app.use(partials()); // was throwing error: 'partials is not defined'
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(__dirname + '/../../client'));
-console.log('+++PATH: ', __dirname + '/../../client')
+app.use(express.static(__dirname + '/../client'));
+console.log('+++PATH: ', __dirname + '/../client')
 // console.log('index.js...');
 
 // connect to mongo db
@@ -111,6 +112,7 @@ SavedDataModel.find({}).then
   // The handlers should make use of your models
   // Test your server in Postman if necessary
 
+ routes(app, express);
 
  app.listen(8000);
  console.log('server listening on port 8000...');

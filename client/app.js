@@ -1,8 +1,8 @@
 angular.module('coinage_mvp', ['ngRoute']) // need ngRoute here?
 .config(function ($routeProvider, $httpProvider) {
   $routeProvider
-    .when('/*', {
-      templateUrl: '/client/index.html',
+    .when('/otherstuff', {
+      templateUrl: 'other.html',
       controller: 'mainController'
     })
     // .when('/signup', {
@@ -10,6 +10,6 @@ angular.module('coinage_mvp', ['ngRoute']) // need ngRoute here?
     //   controller: 'mainController'
     // })
     .otherwise({
-      redirectTo: '/client/index.html'
+      redirectTo: '/'
     });
 })

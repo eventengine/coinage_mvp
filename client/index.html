@@ -3,13 +3,11 @@
   <head>
     <meta charset="utf-8" />
     <title>Coinage - Bitcoin, blockchain & Ethereum resources saved</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-route.js"></script> <!-- remove from package.json? -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <!--  CSS link here later -->
     <!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" /> -->
  </head>
  <body ng-controller="mainController">
+   <ng-view></ng-view>
    <div style="text-align: center">
      <a><img style="border: 2px solid brown; box-shadow: 10px 10px 10px #888888; padding: 12px; border-radius: 5px; float: left; margin-left: 15px; width: 14%; height: 14%;" src="md5.gif"> </a>
    <br><br><br>
@@ -44,11 +42,15 @@
       <a style="color: green">Click to save these search results
       <!-- <br><br> -->
       <!-- <form ng-submit="saveData(fullRecord)"> -->
-        <input ng-submit="saveData(fullRecord)" type="Submit" style="color: brown; margin-left: 2px">
+        <input ng-click="saveData(fullRecord)" type="Submit" style="color: brown; margin-left: 2px">
       <!-- </form> -->
 
    </div>
-   <script src="./server/index.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-route.js"></script> <!-- remove from package.json? -->
+   <script src="app.js"></script>
+   <script src="mainController.js"></script>
+
  </body>
 </html>
 
