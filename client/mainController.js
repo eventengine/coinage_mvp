@@ -1,9 +1,10 @@
 var Coinage = angular.module('coinage_mvp', []);
 
+
 Coinage.controller('mainController', function($scope, $http) {
 
   // ================== default display ===========================
-    $scope.input = "[placeholder for search input]";
+    // $scope.input = "[placeholder for search input]";
     $scope.title = "Law Enforcement Strikes Back in Bitcoin Hearing";
     $scope.byline = "By NATHANIEL POPPER";
     $scope.pub_date = "2014-01-29T16:16:03Z";
@@ -25,10 +26,34 @@ Coinage.controller('mainController', function($scope, $http) {
     })
   };
 
+  var fullRecord = {
+    title: "SendGrid Account Breach Was Used to Attack Coinbase, a Bitcoin Exchange",
+    byline: "By NICOLE PERLROTH",
+    pub_date: "2015-04-09T20:09:02Z",
+    intro: "Government officials testified on Wednesday that virtual currencies like Bitcoin had opened up new avenues for crime that the authorities had not been able to keep up with....",
+    type: "article",
+    source: "NYTimes",
+    createdAt: "2017-03-06T15:02",
+    updatedAt: "null",
+    user_tags: "null",
+    user_notes: "This is a note the dev put in manually in mLab when setting up the initial record. Now that he's reading it, he's made good progress."
+  };
+
   $scope.saveData = function (fullRecord) { // fullRecord will be search result obj
     console.log('mainController.js l 28; .saveData. fullRecord = ', fullRecord);
-
-    $http.post('/saveData', { chili: 'cheese'}).then(function(resp) {
+// { chili: fullRecord}
+    $http.post('/saveData', {
+      title: "SendGrid Account Breach Was Used to Attack Coinbase, a Bitcoin Exchange",
+      byline: "By NICOLE PERLROTH",
+      pub_date: "2015-04-09T20:09:02Z",
+      intro: "Government officials testified on Wednesday that virtual currencies like Bitcoin had opened up new avenues for crime that the authorities had not been able to keep up with....",
+      type: "article",
+      source: "NYTimes",
+      createdAt: "2017-03-06T15:02",
+      updatedAt: "null",
+      user_tags: "null",
+      user_notes: "This is a note the dev put in manually in mLab when setting up the initial record. Now that he's reading it, he's made good progress."
+    }).then(function(resp) {
     console.log('mainController.js l 29, .saveData, resp = ', resp.data);
     })
   }

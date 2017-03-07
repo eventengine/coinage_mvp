@@ -7,12 +7,12 @@
     <!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" /> -->
  </head>
  <body ng-controller="mainController">
-   <ng-view></ng-view>
+
    <div style="text-align: center">
-     <a><img style="border: 2px solid brown; box-shadow: 10px 10px 10px #888888; padding: 12px; border-radius: 5px; float: left; margin-left: 15px; width: 14%; height: 14%;" src="md5.gif"> </a>
-   <br><br><br>
-   <h1>Coinage</h1>
-   <h3 style="font-style: italics">Saving your Bitcoin, blockchain & Ethereum resources</h3>
+
+   <br>
+   <h1 style="color: green">Coinage</h1>
+   <h3 style="font-style: italic; color: grey">Saving your Bitcoin, blockchain & Ethereum resources</h3>
    <!-- <br><br> -->
    <hr style="width: 50%">
    <br>
@@ -36,15 +36,24 @@
          <br><br>
          <a style="color: blue;font-weight: bold">User notes: </a> {{ user_notes }}<br><br>
      </h3>
-      <hr style="width: 30%">
 
-      <br>
-      <a style="color: green">Click to save these search results
+      <a style="color: green">Save these search results ->
       <!-- <br><br> -->
       <!-- <form ng-submit="saveData(fullRecord)"> -->
+  
         <input ng-click="saveData(fullRecord)" type="Submit" style="color: brown; margin-left: 2px">
       <!-- </form> -->
+       <hr style="width: 30%">
+database content here...
+  <ng-view></ng-view>
 
+      <!-- <p class="h_iframe">
+            <iframe src="http://dealbook.nytimes.com/2014/01/29/law-enforcement-strikes-back-in-bitcoin-hearing/" style="border: 4x; border-radius: 5px; width: 90%; margin-left: 40px; height: 350px"></iframe>
+          </p> -->
+
+<div>
+     <a><img style="border: 2px solid brown; box-shadow: 10px 10px 10px #888888; padding: 12px; border-radius: 5px; margin-left: 15px; margin-top: 280px; width: 14%; height: 14%;" src="md5.gif"> </a>
+</div>
    </div>
    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-route.js"></script> <!-- remove from package.json? -->
