@@ -14,8 +14,23 @@
 
    <h1>Coinage</h1>
    <h2>Your go-to app for Bitcoin, blockchain & Ethereum resources</h2>
-   <br><br>
-   [search box goes here...]
+   <!-- <br><br> -->
+
+   <form ng-submit="searchRequest(input)">
+       <input type= "text" ng-model="input" placeholder="Whatcha wanna know?" required style="border-radius: 5px; margin-left: 20px;  width: 180px; line-height: 15px; color: brown;  font-size: 10pt">
+       <input type="Submit" style="color: brown; margin-left: 2px">
+     </form>
+     <p> Search query entered = {{ input }} </p>
+
+     <h3>
+         <a style="color: light-blue;font-weight: bold" target="_blank" href="{{url}}">{{ title }}</a>
+         <br><br>
+         <a style="color: light-blue;font-weight: bold whitespace: pre-wrap;">Author: </a> {{ byline }}
+         <a style="color: light-blue;font-weight: bold"> | Date: </a> {{ pub_date }}<br><br>
+         <a style="color: light-blue;font-weight: bold"> Intro: </a> {{ intro }}<br>
+     </h3>
+
+
 
    </div>
 

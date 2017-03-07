@@ -58,11 +58,11 @@ var testInstance = new SavedDataModel({byline: "testing..."});
 //   intro: "Government officials testified on Wednesday that virtual currencies like Bitcoin had opened up new avenues for crime that the authorities had not been able to keep up with....",
 //   url:  "http://dealbook.nytimes.com/2014/01/29/law-enforcement-strikes-back-in-bitcoin-hearing/",
 //   type: "article",
-//   source: "NYTimes",
-//   user_tags: "Lawsky, Benjamin M, Vance, Cyrus R Jr", // how multiple?
-//   user_notes: "This is a note the dev put in manually in mLab when setting up the initial record. Now that he's reading it, he's made good progress.",
-//   createdAt: "2017-03-06T23:41",
-//   updatedAt: null
+  // source: "NYTimes",
+  // user_tags: "Lawsky, Benjamin M, Vance, Cyrus R Jr", // how multiple?
+  // user_notes: "This is a note the dev put in manually in mLab when setting up the initial record. Now that he's reading it, he's made good progress.",
+  // createdAt: "2017-03-06T23:41",
+  // updatedAt: null
 //   });
 
 // var testInstance2 = new SavedDataModel({
