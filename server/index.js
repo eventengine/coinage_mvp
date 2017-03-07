@@ -1,5 +1,6 @@
 var express = require('express');
-var mongoose = require('mongoose');
+var mongoose = require('mongoose'), Admin = mongoose.mongo.Admin;;
+
 var partials = require('express-partial');
 var bodyParser = require('body-parser');
 var session = require('express-session');
@@ -16,24 +17,103 @@ mongoose.Promise = global.Promise;
 mongoose.connect(uri);
 var db = mongoose.connection;
 
+var Schema = mongoose.Schema;
+
+var TestModelSchema = new Schema({
+    byline: String
+});
+
+// Define schema
+var TestModelSchema = new mongoose.Schema({ byline: 'string', });
+// Compile model from schema
+var TestModel = mongoose.model('TestModel', TestModelSchema );
+
+var testInstance = new TestModel({"byline": "By NICOLE PERLROTH"});
+
+testInstance.save(function(err) {
+  if(err) {console.error('testInstance.save error is: ', err)};
+  console.log('no error in testInstance');
+})
+
+var Byline = mongoose.model('Byline', TestModelSchema);
+
+Byline.find({"byline": "By NICOLE PERLROTH"}, 'byline',   function(err, bylines) {
+  if(err) if(err) {console.error('Byline.find error is: ', err)};
+  console.log('no error in Byline.find. bylines = ', bylines);
+})
+
+
+// module.exports = mongoose.model('test', testSchema);
+
 mongoose.connection
- .once('open', () => console.log('Mongoose connection OPEN!'))
+ .once('open', function() {
+   console.log('Mongoose connection OPEN!');
+ })
+
  .on('error', (error) => {
- console.warn('Warning, this error from Mongoose:', error);
+ console.error('Warning, this error from Mongoose:', error);
  });
 
-app.listen(8000);
+ app.listen(8000);
 
-module.exports = app;
+ module.exports = app;
+
+
+  // var testSchema = new mongoose.Schema({
+  //   id: {
+  //     type: Number,
+  //     required: true,
+  //     unique: true},
+  //   title: {
+  //     type: String,
+  //     required: false,
+  //     unique: false
+  //   }
+  // });
+
+   // new Admin(db.db).listDatabases(function(err, result) {
+   //         console.log('listDatabases succeeded');
+   //         // database list stored in result.databases
+   //         var allDatabases = result.databases;
+   //         console.log('databases = ', allDatabases);
+   //     });
+
+   // var query = Saved_results.find({"byline": "By NICOLE PERLROTH"});
+   // console.log('query result: ', query);
+
+   // Saved_results.find(
+     // {"byline": "By NICOLE PERLROTH"}, 'id', function (err, id) {
+   //     if(err) console.error('db error is: ', err);
+   //   }
+   // })
+ // })
+
+ // .on('open', function() {
+ //   new Admin(db.db).listDatabases(function(err, result) {
+ //         console.log('listDatabases succeeded');
+ //         // database list stored in result.databases
+ //         var allDatabases = result.databases;
+ //         console.log('databases = ', allDatabases);
+ //     });
+ // })
+
+  // () => console.log('Mongoose connection OPEN!')
+
+
+ // db.collection.find
+ // Saved_results.find(
+  //  {"_id": {
+  //         "$oid": "58bdc331f36d2837b811247d"}
+  //  }
+ // )
+// var test = db.Saved_results.find();
+// console.log('testing db.Saved_results.find(): ', test);
+
 
 // need these?
 // app.set('views', __dirname + '/views');
 
 // mongo docu:
-//mongodb://<dbuser>:<dbpassword>@ds119210.mlab.com:19210/coinage_mvp
-// mongoose.Promise = global.Promise
-// mongoose.connect(uri);
-// var db = mongoose.connection;
 
 // test mongoimport:
 // mongoimport -h ds119210.mlab.com:19210 -d coinage_mvp -c Saved_results -u <user> -p <password> --file <input file>
@@ -41,3 +121,17 @@ module.exports = app;
 // var test = (mongoimport -h ds119210.mlab.com:19210 -d coinage_mvp -c Saved_results -u john_packel -p Dostoyevsky@81m --file coinage_mvp);
 
 // console.log('test import = ', test);
+
+// {
+//   id: "1",
+//   title: "SendGrid Account Breach Was Used to Attack Coinbase, a Bitcoin Exchange",
+//   byline: "By NICOLE PERLROTH",
+//   pub_date: "2015-04-09T20:09:02Z",
+//   intro "Government officials testified on Wednesday that virtual currencies like Bitcoin had opened up new avenues for crime that the authorities had not been able to keep up with....",
+//   type: "article",
+//   source: "NYTimes",
+//   createdAt: "2017-03-06T15:02",
+//   updatedAt: "null",
+//   user_tags: "null",
+//   user_notes: "This is a note the dev put in manually in mLab when setting up the initial record. Now that he's reading it, he's made good progress."
+//   }
