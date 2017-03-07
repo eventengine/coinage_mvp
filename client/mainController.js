@@ -22,7 +22,19 @@ Coinage.controller('mainController', function($scope, $http) {
     console.log('mainController.js l 21 post request: mainController / search box input (request) = ', input);
 
     $http.post('/searchRequest', {search: input}).then(function(resp) {
-      console.log('mainController.js l 21: mainController / search box input; response = ', resp.data);
+      console.log('mainController.js l 21: mainController / search box input; response = ', resp);
+      $scope.title = resp.data.title;
+      $scope.byline = resp.data.byline;
+
+      $scope.pub_date = resp.data.pub_date;
+      $scope.intro = resp.data.intro;
+      $scope.url = resp.data.url;
+      $scope.type = resp.data.type;
+      $scope.source = resp.data.source;
+      $scope.user_tags = resp.data.user_tags;
+      $scope.user_notes = resp.data.user_notes;
+      $scope.createdAt = resp.data.createdAt;
+      $scope.updatedAt = resp.data.updatedAt;
     })
   };
 
