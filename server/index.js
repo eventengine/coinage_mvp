@@ -17,18 +17,27 @@ mongoose.Promise = global.Promise;
 mongoose.connect(uri);
 var db = mongoose.connection;
 
+mongoose.connection
+ .once('open', function() {
+   console.log('Mongoose connection OPEN!');
+ })
+
+ .on('error', (error) => {
+ console.error('Warning, this error from Mongoose:', error);
+ });
+
 var Schema = mongoose.Schema;
 
 // Define schema
 var SavedDataModelSchema = new mongoose.Schema({
   title: String,
   byline: String,
-  pub_date: String, // change to date?
+  pub_date: String, // change to Date?
   intro: String,
-  url: String, // change to url?
+  url: String,
   type: String,
   source: String,
-  user_tags: String,
+  user_tags: String, // change to Array?
   user_notes: String,
   createdAt: Date,
   updatedAt: Date
@@ -37,20 +46,24 @@ var SavedDataModelSchema = new mongoose.Schema({
 // Compile model from schema
 var SavedDataModel = mongoose.model('SavedDataModel', SavedDataModelSchema );
 
-var testInstance = new SavedDataModel({byline: "By NICOLE PERLROTH"});
-var testInstance2 = new SavedDataModel({
-  title: "Law Enforcement Strikes Back in Bitcoin Hearing",
-  byline: "By NATHANIEL POPPER",
-  pub_date: "2014-01-29T16:16:03Z",
-  intro: "Government officials testified on Wednesday that virtual currencies like Bitcoin had opened up new avenues for crime that the authorities had not been able to keep up with....",
-  url:  "http://dealbook.nytimes.com/2014/01/29/law-enforcement-strikes-back-in-bitcoin-hearing/",
-  type: "article",
-  source: "NYTimes",
-  user_tags: "Lawsky, Benjamin M, Vance, Cyrus R Jr", // how multiple?
-  user_notes: "This is a note the dev put in manually in mLab when setting up the initial record. Now that he's reading it, he's made good progress.",
-  createdAt: "2017-03-06T23:41",
-  updatedAt: null
-  });
+var dataToSave = {}; // populate this from $scope.fullRecord (create fullRecord from individual fields returned from search)
+
+var testInstance = new SavedDataModel({byline: "testing..."});
+// var saveInstance = new SavedDataModel(dataToSave);
+
+// var testInstance2 = new SavedDataModel({
+//   title: "Law Enforcement Strikes Back in Bitcoin Hearing",
+//   byline: "By NATHANIEL POPPER",
+//   pub_date: "2014-01-29T16:16:03Z",
+//   intro: "Government officials testified on Wednesday that virtual currencies like Bitcoin had opened up new avenues for crime that the authorities had not been able to keep up with....",
+//   url:  "http://dealbook.nytimes.com/2014/01/29/law-enforcement-strikes-back-in-bitcoin-hearing/",
+//   type: "article",
+//   source: "NYTimes",
+//   user_tags: "Lawsky, Benjamin M, Vance, Cyrus R Jr", // how multiple?
+//   user_notes: "This is a note the dev put in manually in mLab when setting up the initial record. Now that he's reading it, he's made good progress.",
+//   createdAt: "2017-03-06T23:41",
+//   updatedAt: null
+//   });
 
 // var testInstance2 = new SavedDataModel({
 //   title: "SendGrid Account Breach Was Used to Attack Coinbase, a Bitcoin Exchange",
@@ -66,26 +79,32 @@ var testInstance2 = new SavedDataModel({
 //   updatedAt: null
 //   });
 
-// testInstance2.save(function(err) {
-//   if(err) {console.error('testInstance.save error is: ', err)};
-//   console.log('no error in testInstance');
-// })
+testInstance.save(function(err) {
+  if(err) {console.error('testInstance.save error is: ', err)};
+  console.log('no error in testInstance');
+})
 
-var Byline = mongoose.model('Byline', SavedDataModelSchema);
+// on every save, add the date
+SavedDataModelSchema.pre('save', function(next) {
+  // get the current date
+  var currentDate = new Date();
+  // change the updated_at field to current date
+  this.updatedAt = currentDate;
+  // if created_at doesn't exist, add to that field
+  if (!this.updatedAt)
+    this.updatedAt = currentDate;
+  console.log('updatedAt saved: ', this.updatedAt);
+  next();
+});
+
+// var Byline = mongoose.model('Byline', SavedDataModelSchema);
 
 SavedDataModel.find({}).then
 (function(bylines) {
   console.log('no error in SavedDataModel. bylines = ', bylines)})
   // add .catch for error
 
-mongoose.connection
- .once('open', function() {
-   console.log('Mongoose connection OPEN!');
- })
 
- .on('error', (error) => {
- console.error('Warning, this error from Mongoose:', error);
- });
 
  app.listen(8000);
 
