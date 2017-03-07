@@ -13,10 +13,10 @@ Coinage.controller('mainController', function($scope, $http) {
     $scope.type = "article";
 
     $scope.source = "NYTimes";
-    $scope.user_tags = "Lawsky, Benjamin M; Vance, Cyrus R Jr";
-    $scope.user_notes = "Ben Lawsky - the guy who put in place the first digital currency regulation in the US and then left to start a consulting firm advising companies how to deal with crypto regulation.";
-    $scope.createdAt = "2017-03-06T23:41";
-    $scope.updatedAt = null;
+    // $scope.user_tags = "Lawsky, Benjamin M; Vance, Cyrus R Jr";
+    // $scope.user_notes = "Ben Lawsky - the guy who put in place the first digital currency regulation in the US and then left to start a consulting firm advising companies how to deal with crypto regulation.";
+    // $scope.createdAt = "2017-03-06T23:41";
+    // $scope.updatedAt = null;
 
 // database section: server should send these; no default
     // $scope.dbtitle = "SendGrid Account Breach Was Used to Attack Coinbase, a Bitcoin Exchange";
@@ -28,11 +28,18 @@ Coinage.controller('mainController', function($scope, $http) {
 
     $http.post('/searchRequest', {search: input}).then(function(resp) {
       console.log('mainController.js l 21: mainController / search box input; response = ', resp);
-      $scope.title = resp.data.title;
-      $scope.byline = resp.data.byline;
 
-      $scope.pub_date = resp.data.pub_date;
-      $scope.intro = resp.data.intro;
+
+      $scope.title = resp.data.response.docs[0].headline.main;
+      $scope.byline = resp.data.response.docs[0].byline.original;;
+
+
+
+      var dateFormat = resp.data.response.docs[0].pub_date;
+          $scope.pubdate = dateFormat.slice(5,7) + '/' + dateFormat.slice(8,10) + '/' + dateFormat.slice(0,4);
+      $scope.pub_date = dateFormat;
+
+      $scope.intro = resp.data.response.docs[0].lead_paragraph;
       $scope.url = resp.data.url;
       $scope.type = resp.data.type;
       $scope.source = resp.data.source;

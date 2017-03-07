@@ -5,6 +5,7 @@ var partials = require('express-partial');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var routes = require('./routes.js');
+var request = require('request');
 var app = express();
 // app.use(partials()); // was throwing error: 'partials is not defined'
 app.use(bodyParser.json());
@@ -49,20 +50,31 @@ var SavedDataModelSchema = new mongoose.Schema({
 var SavedDataModel = mongoose.model('SavedDataModel', SavedDataModelSchema );
 
 
-
 // var dataToSave = {}; // populate this from $scope.fullRecord (create fullRecord from individual fields returned from search)
 // SavedDataModel.create()
-var testInstance = new SavedDataModel({byline: "testing 5pm *******"});
+var testInstance = new SavedDataModel({byline: "testing 5:35pm *******"});
 
-testInstance.save(function(err) {
-  if(err) {console.error('testInstance.save error is: ', err)};
-  console.log('no error in testInstance');
-})
+// .where('pincode.length > 0')
 
-SavedDataModel.find({}).then
+var getDB = function() {
+SavedDataModel.find({
+  title: "Law Enforcement Strikes Back in Bitcoin Hearing",
+  pub_date: "2014-01-29T16:16:03Z"
+}).then
 (function(anything) {
   console.log('no error in SavedDataModel. db contents = ', anything)})
   // add .catch for error
+};
+exports.getDB = getDB();
+console.log('###########getDB = ', getDB());
+
+  routes(app, express);
+
+  app.listen(8000);
+  console.log('server listening on port 8000...');
+
+  module.exports = app;
+
 
 // var saveInstance = new SavedDataModel(dataToSave);
 
@@ -111,18 +123,17 @@ SavedDataModel.find({}).then
 
 // var Byline = mongoose.model('Byline', SavedDataModelSchema);
 
+// testInstance.save(function(err) {
+//   if(err) {console.error('testInstance.save error is: ', err)};
+//   console.log('no error in testInstance');
+// })
 
   // provide static-file serving and a RESTful API which can be used by the client-side code. complete a server that accepts HTTP requests
   // Create a router
   // The handlers should make use of your models
   // Test your server in Postman if necessary
 
- routes(app, express);
 
- app.listen(8000);
- console.log('server listening on port 8000...');
-
- module.exports = app;
  // module.exports = mongoose.model('test', testSchema);
 
  // var TestModelSchema = new Schema({
