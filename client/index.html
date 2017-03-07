@@ -2,34 +2,41 @@
 <html ng-app='coinage_mvp'>
   <head>
     <meta charset="utf-8" />
-    <title>Coinage - your go-to app for Bitcoin, blockchain & Ethereum resources</title>
+    <title>Coinage - Bitcoin, blockchain & Ethereum resources saved</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <!--  CSS link here later -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+    <!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" /> -->
  </head>
-
-
  <body ng-controller="mainController">
    <div ng-view style="text-align: center">
 
    <h1>Coinage</h1>
-   <h2>Your go-to app for Bitcoin, blockchain & Ethereum resources</h2>
-   <!-- <br><br> -->
+   <h3 style="font-style: italics">Saving your Bitcoin, blockchain & Ethereum resources</h3>
+   <hr style="width: 50%">
+  <br><br>
 
    <form ng-submit="searchRequest(input)">
        <input type= "text" ng-model="input" placeholder="Whatcha wanna know?" required style="border-radius: 5px; margin-left: 20px;  width: 180px; line-height: 15px; color: brown;  font-size: 10pt">
        <input type="Submit" style="color: brown; margin-left: 2px">
      </form>
      <p> Search query entered = {{ input }} </p>
-
+     <!-- <hr style="width: 20%"> -->
      <h3>
-         <a style="color: light-blue;font-weight: bold" target="_blank" href="{{url}}">{{ title }}</a>
+         <a style="color: blue;font-weight: bold" target="_blank" href="{{url}}">{{ title }}</a>
          <br><br>
-         <a style="color: light-blue;font-weight: bold whitespace: pre-wrap;">Author: </a> {{ byline }}
-         <a style="color: light-blue;font-weight: bold"> | Date: </a> {{ pub_date }}<br><br>
-         <a style="color: light-blue;font-weight: bold"> Intro: </a> {{ intro }}<br>
-     </h3>
+         <a style="color: blue;font-weight: bold whitespace: pre-wrap;">Author: </a> {{ byline }}
+         <a style="color: blue;font-weight: bold"> | Date: </a> {{ pub_date }}<br><br>
+         <a style="color: blue;font-weight: bold"> Intro: </a> {{ intro }}<br><br>
 
+         <a style="color: blue;font-weight: bold whitespace: pre-wrap;">Resource type: </a> {{ type }}
+         <a style="color: blue;font-weight: bold"> | Source: </a> {{ source }}
+         <a style="color: blue;font-weight: bold whitespace: pre-wrap;"> | User tags: </a> {{ user_tags }}
+         <br><br>
+         <a style="color: blue;font-weight: bold">User notes: </a> {{ user_notes }}<br><br>
+
+     </h3>
+    <hr style="width: 30%">
 
 
    </div>
