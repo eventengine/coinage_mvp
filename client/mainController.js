@@ -3,7 +3,7 @@ var Coinage = angular.module('coinage_mvp', []);
 Coinage.controller('mainController', function($scope, $http) {
 
   // ================== default display ===========================
-    $scope.input = "[placeholder for search input]"; 
+    $scope.input = "[placeholder for search input]";
     $scope.title = "Law Enforcement Strikes Back in Bitcoin Hearing";
     $scope.byline = "By NATHANIEL POPPER";
     $scope.pub_date = "2014-01-29T16:16:03Z";
@@ -18,9 +18,17 @@ Coinage.controller('mainController', function($scope, $http) {
     $scope.updatedAt = null;
 
   $scope.searchRequest = function(input) {
-    $http.post('/request', {search: input}).then(function(resp) {
-      console.log('mainController.js l 21: mainController / search box input (request) = ', input);
+    console.log('mainController.js l 21 post request: mainController / search box input (request) = ', input);
+
+    $http.post('/searchRequest', {search: input}).then(function(resp) {
       console.log('mainController.js l 21: mainController / search box input; response = ', resp.data);
     })
   };
+
+  $scope.saveData = function (fullRecord) { // fullRecord will be search result obj
+    console.log('mainController.js l 28; .saveData. fullRecord = ', fullRecord);
+
+    $http.post('/saveData', { ?? $scope.fullRecord ?? }).then(function(resp) {
+    console.log('mainController.js l 29, .saveData, resp = ', resp);
+  }
 });

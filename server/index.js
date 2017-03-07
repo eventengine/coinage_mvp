@@ -8,7 +8,9 @@ var app = express();
 // app.use(partials()); // was throwing error: 'partials is not defined'
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(__dirname + '/client'));
+app.use(express.static(__dirname + '/../../client'));
+console.log('+++PATH: ', __dirname + '/../../client')
+// console.log('index.js...');
 
 // connect to mongo db
 var uri = 'mongodb://john:john@ds119210.mlab.com:19210/coinage_mvp';
@@ -48,7 +50,7 @@ var SavedDataModel = mongoose.model('SavedDataModel', SavedDataModelSchema );
 
 var dataToSave = {}; // populate this from $scope.fullRecord (create fullRecord from individual fields returned from search)
 
-var testInstance = new SavedDataModel({byline: "testing..."});
+// var testInstance = new SavedDataModel({byline: "testing..."});
 // var saveInstance = new SavedDataModel(dataToSave);
 
 // var testInstance2 = new SavedDataModel({
@@ -79,10 +81,10 @@ var testInstance = new SavedDataModel({byline: "testing..."});
 //   updatedAt: null
 //   });
 
-testInstance.save(function(err) {
-  if(err) {console.error('testInstance.save error is: ', err)};
-  console.log('no error in testInstance');
-})
+// testInstance.save(function(err) {
+//   if(err) {console.error('testInstance.save error is: ', err)};
+//   console.log('no error in testInstance');
+// })
 
 // on every save, add the date
 SavedDataModelSchema.pre('save', function(next) {
@@ -104,9 +106,14 @@ SavedDataModel.find({}).then
   console.log('no error in SavedDataModel. bylines = ', bylines)})
   // add .catch for error
 
+  // provide static-file serving and a RESTful API which can be used by the client-side code. complete a server that accepts HTTP requests
+  // Create a router
+  // The handlers should make use of your models
+  // Test your server in Postman if necessary
 
 
  app.listen(8000);
+ console.log('server listening on port 8000...');
 
  module.exports = app;
  // module.exports = mongoose.model('test', testSchema);
