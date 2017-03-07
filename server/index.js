@@ -19,12 +19,12 @@ var db = mongoose.connection;
 
 var Schema = mongoose.Schema;
 
-var TestModelSchema = new Schema({
-    byline: String
-});
+// var TestModelSchema = new Schema({
+//     byline: String
+// });
 
 // Define schema
-var TestModelSchema = new mongoose.Schema({ byline: 'string', });
+var TestModelSchema = new mongoose.Schema({ byline: String});
 // Compile model from schema
 var TestModel = mongoose.model('TestModel', TestModelSchema );
 
@@ -37,13 +37,10 @@ testInstance.save(function(err) {
 
 var Byline = mongoose.model('Byline', TestModelSchema);
 
-Byline.find({"byline": "By NICOLE PERLROTH"}, 'byline',   function(err, bylines) {
-  if(err) if(err) {console.error('Byline.find error is: ', err)};
-  console.log('no error in Byline.find. bylines = ', bylines);
-})
-
-
-// module.exports = mongoose.model('test', testSchema);
+TestModel.find({}).then
+(function(bylines) {
+  console.log('no error in Byline.find. bylines = ', bylines)})
+  // add .catch for error
 
 mongoose.connection
  .once('open', function() {
@@ -57,7 +54,7 @@ mongoose.connection
  app.listen(8000);
 
  module.exports = app;
-
+ // module.exports = mongoose.model('test', testSchema);
 
   // var testSchema = new mongoose.Schema({
   //   id: {
