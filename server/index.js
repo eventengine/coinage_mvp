@@ -19,27 +19,47 @@ var db = mongoose.connection;
 
 var Schema = mongoose.Schema;
 
-// var TestModelSchema = new Schema({
-//     byline: String
-// });
-
 // Define schema
-var TestModelSchema = new mongoose.Schema({ byline: String});
+var SavedDataModelSchema = new mongoose.Schema({
+  title: String,
+  byline: String,
+  pub_date: String, // change to date?
+  intro: String,
+  type: String,
+  source: String,
+  user_tags: String,
+  user_notes: String,
+  createdAt: Date,
+  updatedAt: Date
+});
+
 // Compile model from schema
-var TestModel = mongoose.model('TestModel', TestModelSchema );
+var SavedDataModel = mongoose.model('SavedDataModel', SavedDataModelSchema );
 
-var testInstance = new TestModel({"byline": "By NICOLE PERLROTH"});
+var testInstance = new SavedDataModel({byline: "By NICOLE PERLROTH"});
+var testInstance2 = new SavedDataModel({
+  title: "SendGrid Account Breach Was Used to Attack Coinbase, a Bitcoin Exchange",
+  byline: "By NICOLE PERLROTH",
+  pub_date: "2015-04-09T20:09:02Z",
+  intro: "Government officials testified on Wednesday that virtual currencies like Bitcoin had opened up new avenues for crime that the authorities had not been able to keep up with....",
+  type: "article",
+  source: "NYTimes",
+  user_tags: "Coinbase",
+  user_notes: "This is a note the dev put in manually in mLab when setting up the initial record. Now that he's reading it, he's made good progress.",
+  createdAt: "2017-03-06T15:02",
+  updatedAt: null
+  });
 
-testInstance.save(function(err) {
+testInstance2.save(function(err) {
   if(err) {console.error('testInstance.save error is: ', err)};
   console.log('no error in testInstance');
 })
 
-var Byline = mongoose.model('Byline', TestModelSchema);
+var Byline = mongoose.model('Byline', SavedDataModelSchema);
 
-TestModel.find({}).then
+SavedDataModel.find({}).then
 (function(bylines) {
-  console.log('no error in Byline.find. bylines = ', bylines)})
+  console.log('no error in SavedDataModel. bylines = ', bylines)})
   // add .catch for error
 
 mongoose.connection
@@ -55,6 +75,10 @@ mongoose.connection
 
  module.exports = app;
  // module.exports = mongoose.model('test', testSchema);
+
+ // var TestModelSchema = new Schema({
+ //     byline: String
+ // });
 
   // var testSchema = new mongoose.Schema({
   //   id: {
@@ -121,7 +145,7 @@ mongoose.connection
 
 // {
 //   id: "1",
-//   title: "SendGrid Account Breach Was Used to Attack Coinbase, a Bitcoin Exchange",
+  // title: "SendGrid Account Breach Was Used to Attack Coinbase, a Bitcoin Exchange",
 //   byline: "By NICOLE PERLROTH",
 //   pub_date: "2015-04-09T20:09:02Z",
 //   intro "Government officials testified on Wednesday that virtual currencies like Bitcoin had opened up new avenues for crime that the authorities had not been able to keep up with....",
