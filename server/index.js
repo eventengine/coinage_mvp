@@ -25,6 +25,7 @@ var SavedDataModelSchema = new mongoose.Schema({
   byline: String,
   pub_date: String, // change to date?
   intro: String,
+  url: String, // change to url?
   type: String,
   source: String,
   user_tags: String,
@@ -38,22 +39,37 @@ var SavedDataModel = mongoose.model('SavedDataModel', SavedDataModelSchema );
 
 var testInstance = new SavedDataModel({byline: "By NICOLE PERLROTH"});
 var testInstance2 = new SavedDataModel({
-  title: "SendGrid Account Breach Was Used to Attack Coinbase, a Bitcoin Exchange",
-  byline: "By NICOLE PERLROTH",
-  pub_date: "2015-04-09T20:09:02Z",
+  title: "Law Enforcement Strikes Back in Bitcoin Hearing",
+  byline: "By NATHANIEL POPPER",
+  pub_date: "2014-01-29T16:16:03Z",
   intro: "Government officials testified on Wednesday that virtual currencies like Bitcoin had opened up new avenues for crime that the authorities had not been able to keep up with....",
+  url:  "http://dealbook.nytimes.com/2014/01/29/law-enforcement-strikes-back-in-bitcoin-hearing/",
   type: "article",
   source: "NYTimes",
-  user_tags: "Coinbase",
+  user_tags: "Lawsky, Benjamin M, Vance, Cyrus R Jr", // how multiple?
   user_notes: "This is a note the dev put in manually in mLab when setting up the initial record. Now that he's reading it, he's made good progress.",
-  createdAt: "2017-03-06T15:02",
+  createdAt: "2017-03-06T23:41",
   updatedAt: null
   });
 
-testInstance2.save(function(err) {
-  if(err) {console.error('testInstance.save error is: ', err)};
-  console.log('no error in testInstance');
-})
+// var testInstance2 = new SavedDataModel({
+//   title: "SendGrid Account Breach Was Used to Attack Coinbase, a Bitcoin Exchange",
+//   byline: "By NICOLE PERLROTH",
+//   pub_date: "2015-04-09T20:09:02Z",
+//   intro: "Coinbase, one of the most popular Bitcoin exchanges, confirmed that hackers had compromised its SendGrid account, though it said no Bitcoin were stolen....",
+//   url: "http://bits.blogs.nytimes.com/2015/04/09/sendgrid-email-breach-was-used-to-attack-coinbase-a-bitcoin-exchange/",
+//   type: "article",
+//   source: "NYTimes",
+//   user_tags: "Coinbase",
+//   user_notes: "Another note entered in mLab.",
+//   createdAt: "2017-03-06T11:35",
+//   updatedAt: null
+//   });
+
+// testInstance2.save(function(err) {
+//   if(err) {console.error('testInstance.save error is: ', err)};
+//   console.log('no error in testInstance');
+// })
 
 var Byline = mongoose.model('Byline', SavedDataModelSchema);
 
