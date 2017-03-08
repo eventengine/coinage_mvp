@@ -29,11 +29,8 @@ Coinage.controller('mainController', function($scope, $http) {
     $http.post('/searchRequest', {search: input}).then(function(resp) {
       console.log('mainController.js l 21: mainController / search box input; response = ', resp);
 
-
       $scope.title = resp.data.response.docs[0].headline.main;
       $scope.byline = resp.data.response.docs[0].byline.original;;
-
-
 
       var dateFormat = resp.data.response.docs[0].pub_date;
           $scope.pubdate = dateFormat.slice(5,7) + '/' + dateFormat.slice(8,10) + '/' + dateFormat.slice(0,4);

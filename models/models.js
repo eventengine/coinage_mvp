@@ -1,11 +1,7 @@
 // create models
 
 //  Use knex/mongoose to build your table(s)/schema
-// In a models directory, create your model(s) with methods to
-// fetchAll from a table/collection and
-// addOne to that table/collection
-
-
+// In a models directory, create your model(s) with methods to fetchAll from a table/collection and addOne to that table/collection
 
 // shortly-ang example:
 var UserSchema = new mongoose.Schema({
@@ -63,11 +59,10 @@ module.exports = mongoose.model('users', UserSchema);
   // But I need a model defined before I can access data.
   // Probably best to set up new schema & model, rather than try to pull in what I created in mLab.
 
-
 //  Getting list of all databases with Mongoose
  // There are some similar questions but all of them involves using the MongoDB NodeJS driver instead of Mongoose ODM.
 
-//   A: You can't directly get the list from the connection provided by mongoose, but it's easy to do with the mongo Admin object as it contains a function called listDatabases:
+//   StackO: You can't directly get the list from the connection provided by mongoose, but it's easy to do with the mongo Admin object as it contains a function called listDatabases:
 //
 // var mongoose = require('mongoose')
 //     , Admin = mongoose.mongo.Admin;
