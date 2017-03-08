@@ -40,7 +40,7 @@ Coinage.controller('mainController', function($scope, $http) {
       $scope.pub_date = dateFormat;
 
       $scope.intro = resp.data.response.docs[0].lead_paragraph;
-      $scope.url = resp.data.url;
+      $scope.url = resp.data.response.docs[0].web_url;
       $scope.type = resp.data.type;
       $scope.source = resp.data.source;
       $scope.user_tags = resp.data.user_tags;

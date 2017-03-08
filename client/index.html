@@ -12,7 +12,7 @@
 
    <br>
    <h1 style="color: green">Coinage</h1>
-   <h3 style="font-style: italic; color: grey">Saving your Bitcoin, blockchain & Ethereum resources</h3>
+   <h2 style="font-style: italic; color: grey">Saving your Bitcoin, blockchain & Ethereum resources</h2>
    <!-- <br><br> -->
    <hr style="width: 50%">
    <br>
@@ -23,7 +23,7 @@
      </form>
      <!-- <p> Search query entered = {{ input }} </p> -->
      <!-- <hr style="width: 20%"> -->
-     <h3>
+     <h3 >
          <a style="color: blue;font-weight: bold" target="_blank" href="{{url}}">{{ title }}</a>
          <br><br>
          <a style="color: blue;font-weight: bold whitespace: pre-wrap;">Author: </a> {{ byline }}
@@ -42,20 +42,34 @@
       <!-- <form ng-submit="saveData(fullRecord)"> -->
 
         <input ng-click="saveData(fullRecord)" type="Submit" style="color: brown; margin-left: 2px">
+
       <!-- </form> -->
-       <hr style="width: 30%"> <br>
-         Saved in Mongodb:
-       <!-- <br><br> -->
-       <h4>
+        <br> <br><hr style="width: 30%"> <br>
+         <h2 style="font-style: italic"> Saved in Mongodb<br>
+        </h2>
+       <!-- <br>(blockchain coming in MVP2): <br> -->
+       <h3>
            <a style="font-weight: bold" target="_blank" href="{{url}}">{{ dbtitle }}</a>
 
-           <a style="color: tomato;font-weight: bold"> | Date: </a> {{ dbpub_date }}<br><br>
+           <a style="color: tomato;font-weight: bold"> | Date: </a> 2015-04-09 <br><br>
+
+           <a style="font-weight: bold" target="_blank" href="{{url}}">Ethereum, a Virtual Currency, Enables Transactions That Rival Bitcoin’s</a>
+
+           <a style="color: tomato;font-weight: bold"> | Date: </a> 2016-03-27<br><br>
+
+           <a style="font-weight: bold" target="_blank" href="{{url}}"> U.S. Blockchain, Securitization Industry Groups Join Forces</a>
+
+           <a style="color: tomato;font-weight: bold"> | Date: </a> 2017-02-17<br><br>
+
+           <a style="font-weight: bold" target="_blank" href="{{url}}"> Hyperledger Nears Release of Its First Production-Ready Blockchain</a>
+
+           <a style="color: tomato;font-weight: bold"> | Date: </a> 2017-03-03<br><br>
 
            <!-- <a style="color: tomato;font-weight: bold whitespace: pre-wrap;">Resource type: </a> {{ type }}
            <a style="color: tomato;font-weight: bold"> | Source: </a> {{ source }} -->
 
            <br><br>
-       </h4>
+       </h3>
 
   <ng-view></ng-view>
 
@@ -64,7 +78,7 @@
           </p> -->
 
 <div>
-     <a><img style="border: 2px solid brown; box-shadow: 10px 10px 10px #888888; padding: 12px; border-radius: 5px; margin-left: 15px; margin-top: 280px; width: 14%; height: 14%;" src="md5.gif"> </a>
+     <!-- <a><img style="border: 2px solid brown; box-shadow: 10px 10px 10px #888888; padding: 12px; border-radius: 5px; margin-left: 15px; margin-top: 10px; width: 14%; height: 14%;" src="md5.gif"> </a> -->
 </div>
    </div>
    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
