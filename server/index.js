@@ -1,5 +1,6 @@
 var express = require('express');
-var mongoose = require('mongoose'), Admin = mongoose.mongo.Admin;;
+var mongoose = require('mongoose');
+// var mongoose = require('mongoose'), Admin = mongoose.mongo.Admin;
 
 var partials = require('express-partial');
 var bodyParser = require('body-parser');
@@ -11,61 +12,72 @@ var app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/../client'));
-// console.log('index.js...');
+
+routes(app, express);
+app.listen(8000);
+console.log('server listening on port 8000...');
+module.exports = app;
 
 // connect to mongo db
-var uri = 'mongodb://john:john@ds119210.mlab.com:19210/coinage_mvp';
-console.log('uri for mongoose = ', uri);
-mongoose.Promise = global.Promise;
-mongoose.connect(uri);
-var db = mongoose.connection;
-
-mongoose.connection
- .once('open', function() {
-   console.log('Mongoose connection OPEN!');
-
- })
- .on('error', (error) => {
- console.error('Warning, this error from Mongoose:', error);
- });
-
-var Schema = mongoose.Schema;
-
-// Define schema
-var SavedDataModelSchema = new mongoose.Schema({
-  title: String,
-  byline: String,
-  pub_date: String, // change to Date?
-  intro: String,
-  url: String,
-  type: String,
-  source: String,
-  user_tags: String, // change to Array?
-  user_notes: String,
-  createdAt: Date,
-  updatedAt: Date
-});
-
-// Compile model from schema
-var SavedDataModel = mongoose.model('SavedDataModel', SavedDataModelSchema );
+// var uri = 'mongodb://john:john@ds119210.mlab.com:19210/coinage_mvp';
+// console.log('uri for mongoose = ', uri);
+// mongoose.Promise = global.Promise;
+// mongoose.connect(uri);
+// var db = mongoose.connection;
+//
+// mongoose.connection
+//  .once('open', function() {
+//    console.log('Mongoose connection OPEN!');
+//
+//  })
+//  .on('error', (error) => {
+//  console.error('Warning, this error from Mongoose:', error);
+//  });
+//
+// var Schema = mongoose.Schema;
+//
+// // Define schema
+// var SavedDataModelSchema = new mongoose.Schema({
+//   title: String,
+//   byline: String,
+//   pub_date: String, // change to Date?
+//   intro: String,
+//   url: String,
+//   type: String,
+//   source: String,
+//   user_tags: String, // change to Array?
+//   user_notes: String,
+//   createdAt: Date,
+//   updatedAt: Date
+// });
+//
+// // Compile model from schema
+// var SavedDataModel = mongoose.model('SavedDataModel', SavedDataModelSchema );
 
 // var dataToSave = {}; // populate this from search results (when user clicks Save button)
 
 // var testInstance = new SavedDataModel({byline: "testing 8pm *******"});
 
-var testInstance = new SavedDataModel({
-  title: "Law Enforcement Strikes Back in Bitcoin Hearing",
-  byline: "By NATHANIEL POPPER",
-  pub_date: "2014-01-29T16:16:03Z",
-  intro: "Government officials testified on Wednesday that virtual currencies like Bitcoin had opened up new avenues for crime that the authorities had not been able to keep up with....",
-  url:  "http://dealbook.nytimes.com/2014/01/29/law-enforcement-strikes-back-in-bitcoin-hearing/",
-  type: "article",
-  source: "NYTimes",
-  user_tags: "Lawsky, Benjamin M, Vance, Cyrus R Jr", // how multiple?
-  user_notes: "This is a note the dev put in manually in mLab when setting up the initial record. Now that he's reading it, he's made good progress.",
-  createdAt: "2017-03-06T23:41",
-  updatedAt: null
-  });
+// var testInstance = new SavedDataModel({ dataToSave });
+// testInstance.save(function(err) {
+//   if(err) {console.error('testInstance.save error is: ', err)};
+//   console.log('no error in testInstance');
+// }) //
+// console.log('server/index.js. just added to db: ', byline);
+
+// var testInstance = new SavedDataModel({
+  // title: "Law Enforcement Strikes Back in Bitcoin Hearing",
+  // byline: "By NATHANIEL POPPER",
+  // pub_date: "2014-01-29T16:16:03Z",
+  // intro: "Government officials testified on Wednesday that virtual currencies like Bitcoin had opened up new avenues for crime that the authorities had not been able to keep up with....",
+  // url:  "http://dealbook.nytimes.com/2014/01/29/law-enforcement-strikes-back-in-bitcoin-hearing/",
+  // type: "article",
+  // source: "NYTimes",
+  // user_tags: "Lawsky, Benjamin M, Vance, Cyrus R Jr", // how multiple?
+  // user_notes: "This is a note the dev put in manually in mLab when setting up the initial record. Now that he's reading it, he's made good progress.",
+  // createdAt: "2017-03-06T23:41",
+  // updatedAt: null
+  // });
 
 // testInstance.save(function(err) {
 //   if(err) {console.error('testInstance.save error is: ', err)};
@@ -73,21 +85,18 @@ var testInstance = new SavedDataModel({
 // }) //
 // console.log('server/index.js. just added to db: ', byline);
 // var getDB = function() {  // .where('pincode.length > 0')
-SavedDataModel.find({
-  // title: "Law Enforcement Strikes Back in Bitcoin Hearing",
-  pub_date: "2014-01-29T16:16:03Z"
-}).then
-(function(anything) {
-  console.log('server/index.js. l 81. no error in SavedDataModel. db search for pub_date = 2014-01-29T16:16:03Z : \n', anything)})
-  // add .catch for error
+// SavedDataModel.find({
+//   // title: "Law Enforcement Strikes Back in Bitcoin Hearing",
+//   pub_date: "2014-01-29T16:16:03Z"
+// }).then
+// (function(anything) {
+//   console.log('server/index.js. l 81. no error in SavedDataModel. db search for pub_date = 2014-01-29T16:16:03Z : \n', anything)})
+//   // add .catch for error
 // };
 // exports.getDB = getDB();
 // console.log('###########getDB = ', getDB());
 
-  routes(app, express);
-  app.listen(8000);
-  console.log('server listening on port 8000...');
-  module.exports = app;
+
 
 // var saveInstance = new SavedDataModel(dataToSave);
 
@@ -197,17 +206,3 @@ SavedDataModel.find({
 // var test = (mongoimport -h ds119210.mlab.com:19210 -d coinage_mvp -c Saved_results -u john_packel -p Dostoyevsky@81m --file coinage_mvp);
 
 // console.log('test import = ', test);
-
-// {
-  // id: "1",
-  // title: "SendGrid Account Breach Was Used to Attack Coinbase, a Bitcoin Exchange",
-  // byline: "By NICOLE PERLROTH",
-  // pub_date: "2015-04-09T20:09:02Z",
-  // intro "Government officials testified on Wednesday that virtual currencies like Bitcoin had opened up new avenues for crime that the authorities had not been able to keep up with....",
-  // type: "article",
-  // source: "NYTimes",
-  // createdAt: "2017-03-06T15:02",
-  // updatedAt: "null",
-  // user_tags: "null",
-  // user_notes: "This is a note the dev put in manually in mLab when setting up the initial record. Now that he's reading it, he's made good progress."
-  // }

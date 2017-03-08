@@ -60,20 +60,13 @@ Coinage.controller('mainController', function($scope, $http) {
     user_notes: "This is a note the dev put in manually in mLab when setting up the initial record. Now that he's reading it, he's made good progress."
   };
 
-  $scope.saveData = function (fullRecord) { // fullRecord will be search result obj
-    console.log('mainController.js l 28; .saveData. fullRecord = ', fullRecord);
+  $scope.saveData = function (title, pub_date, intro) { // fullRecord will be search result obj
+    console.log('mainController.js l 28; .saveData. title, pub_date, intro = ', title, pub_date, intro);
 // { chili: fullRecord}
     $http.post('/saveData', {
-      title: "SendGrid Account Breach Was Used to Attack Coinbase, a Bitcoin Exchange",
-      byline: "By NICOLE PERLROTH",
-      pub_date: "2015-04-09T20:09:02Z",
-      intro: "Government officials testified on Wednesday that virtual currencies like Bitcoin had opened up new avenues for crime that the authorities had not been able to keep up with....",
-      type: "article",
-      source: "NYTimes",
-      createdAt: "2017-03-06T15:02",
-      updatedAt: "null",
-      user_tags: "null",
-      user_notes: "This is a note the dev put in manually in mLab when setting up the initial record. Now that he's reading it, he's made good progress."
+      title: title,
+      pub_date: pub_date,
+      intro: intro
     }).then(function(resp) {
     console.log('mainController.js l 29, .saveData, resp = ', resp.data);
 
@@ -84,3 +77,14 @@ Coinage.controller('mainController', function($scope, $http) {
     })
   }
 });
+
+// title: "SendGrid Account Breach Was Used to Attack Coinbase, a Bitcoin Exchange",
+// byline: "By NICOLE PERLROTH",
+// pub_date: "2015-04-09T20:09:02Z",
+// intro: "Government officials testified on Wednesday that virtual currencies like Bitcoin had opened up new avenues for crime that the authorities had not been able to keep up with....",
+// type: "article",
+// source: "NYTimes",
+// createdAt: "2017-03-06T15:02",
+// updatedAt: "null",
+// user_tags: "null",
+// user_notes: "This is a note the dev put in manually in mLab when setting up the initial record. Now that he's reading it, he's made good progress."
