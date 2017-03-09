@@ -39,21 +39,19 @@ var SavedDataModel = mongoose.model('SavedDataModel', SavedDataModelSchema );
 
 module.exports = {
   save: function (dbtemp, callback) {
-
-  var testInstance = new SavedDataModel({ dbtemp });
+    var testInstance = new SavedDataModel({ dbtemp });
     testInstance.save(function(err) {
-      if(err) {console.error('testInstance.save error is: ', err);
-        callback(err, null);
-    };
-      console.log('no error in testInstance');
-  })
-
+      if(err) {callback(err, null)}
+      else {console.log('models.js l 45: no error in testInstance')}
+    })
   // results =
   SavedDataModel.find({}).then(function(results) {
-    console.log('models.js. l 53. no error in SavedDataModel. db search for all: \n', results[1])})
+    console.log('models.js. l 49. no error in SavedDataModel. db search for results[1]: \n', results[1])});
+    console.log('full db: \n', results);
     // add .catch for error
     // callback(null, results); // limit to 1st 5 items in db?
       console.log('results after .find all = ', results);
+    callback(results[1]);
   }
 }
 ///

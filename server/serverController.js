@@ -2,7 +2,8 @@ require('./index.js');
 var models = require('../models/models.js');
 
 exports.saveData = function(req, res){
-  console.log('serverController. received saveData request. req.body = ', req.body);
+  console.log('serverController l 5. received saveData request. req.body.title, req.body.pub_date, req.body.intro = \n');
+  console.log(req.body.title, req.body.pub_date, req.body.intro);
 
   // console.log('getDB = ', getDB);
     // re-render db content because we are adding to it
@@ -13,7 +14,7 @@ exports.saveData = function(req, res){
        dbpub_date: req.body.pub_date,
        dbintro: req.body.intro
      };
-
+   console.log('dbtemp = ', dbtemp);
     //  var params = [req.body.title, req.body.pub_date, req.body.intro];
      models.save(dbtemp, function(err, results) {
        if (err) { console.error('error in serverController l 19') }
