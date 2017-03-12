@@ -37,7 +37,7 @@ var SavedDataModelSchema = new mongoose.Schema({
 // Compile model from schema
 var SavedDataModel = mongoose.model('SavedDataModel', SavedDataModelSchema );
 
-module.exports = {
+module.exports = { // refactor like Fizzbuzz; save function & find function; return {save: save, find: find}
   save: function (dbtemp, callback) {
     var testInstance = new SavedDataModel({ dbtemp });
     testInstance.save(function(err) {
